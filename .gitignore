@@ -1,0 +1,16 @@
+### OSX ###
+.DS_Store
+.sass-cache
+
+### Vim ###
+.*.swp
+*~
+
+### phpstorm ###
+.idea
+
+### extjs
+.sencha
+ext
+build
+bootstrap.json
