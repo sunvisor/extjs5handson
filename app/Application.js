@@ -5,7 +5,14 @@
  */
 Ext.define('MyList.Application', {
     extend: 'Ext.app.Application',
-    
+
+    requires: [
+        'Ext.direct.*',
+        'Ext.direct.RemotingProvider',
+        'Ext.data.proxy.Direct',
+        'Ext.tip.QuickTipManager'
+    ],
+
     name: 'MyList',
 
     views: [
@@ -24,4 +31,8 @@ Ext.define('MyList.Application', {
     launch: function () {
         // TODO - Launch the application
     }
+});
+
+Ext.onReady(function() {
+    Ext.direct.Manager.addProvider(Ext.app.REMOTING_API);
 });
