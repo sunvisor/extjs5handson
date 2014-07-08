@@ -110,6 +110,10 @@
         {
             "path": "app.js",
             "bundle": true
+        },
+        {
+            "path": "http://ext5handson.xenophy.info/php/api.php",
+            "remote": true
         }
     ],
 
