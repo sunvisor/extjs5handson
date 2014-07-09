@@ -12,7 +12,8 @@ Ext.define('MyList.view.main.Main', {
 
     requires: [
         'MyList.view.edit.Edit',
-        'MyList.view.list.List'
+        'MyList.view.list.List',
+        'MyList.view.grouplist.GroupList'
     ],
 
     controller: 'main',
@@ -32,7 +33,7 @@ Ext.define('MyList.view.main.Main', {
         }
     },{
         region: 'west',
-        xtype: 'panel',
+        xtype: 'grouplist',
         html: 'west',
         width: 250,
         split: true
