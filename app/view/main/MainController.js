@@ -70,6 +70,17 @@ Ext.define('MyList.view.main.MainController', {
     },
 
     onCancel: function() {
-        console.log('cancel');
+        var me = this,
+            list = me.lookupReference('mylist'),
+            edit = me.lookupReference('myedit'),
+            rec = edit.getViewModel().getData().rec;
+
+        if( !rec || rec.phantom ) {
+            edit.reset();
+        } else {
+            rec.load(rec.get('id'));
+        }
+        me.setActiveItem(list);
+
     }
 });
