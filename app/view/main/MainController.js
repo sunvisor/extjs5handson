@@ -4,7 +4,16 @@ Ext.define('MyList.view.main.MainController', {
     alias: 'controller.main',
 
     onAddList: function() {
-        console.log('add list');
+        var me = this,
+            list = me.lookupReference('mylist'),
+            edit = me.lookupReference('myedit'),
+            vmodel = edit.getViewModel();
+
+        vmodel.setData({
+            rec: Ext.create('MyList.model.List')
+        });
+        edit.reset();
+        me.setActiveItem(edit);
     },
 
     onListSelect: function(view, selected) {
@@ -40,13 +49,23 @@ Ext.define('MyList.view.main.MainController', {
     },
 
     onRemoveList: function() {
-        console.log('remove list');
+        var me = this,
+            list = me.lookupReference('mylist'),
+            selected = list.getSelection();
+
+        if( selected.length > 0 ) {
+            selected[0].erase();
+        }
+
     },
 
     onSubmit: function() {
         var me = this,
-            list = me.lookupReference('mylist');
+            list = me.lookupReference('mylist'),
+            edit = me.lookupReference('myedit'),
+            data = edit.getViewModel().getData();
 
+        data.rec.save();
         me.setActiveItem(list);
     },
 
