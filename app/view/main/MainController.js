@@ -1,26 +1,56 @@
-/**
- * This class is the main view for the application. It is specified in app.js as the
- * "autoCreateViewport" property. That setting automatically applies the "viewport"
- * plugin to promote that instance of this class to the body element.
- *
- * TODO - Replace this content of this view to suite the needs of your application.
- */
 Ext.define('MyList.view.main.MainController', {
     extend: 'Ext.app.ViewController',
 
-    requires: [
-        'Ext.MessageBox'
-    ],
-
     alias: 'controller.main',
 
-    onClickButton: function () {
-        Ext.Msg.confirm('Confirm', 'Are you sure?', 'onConfirm', this);
+    onAddList: function() {
+        console.log('add list');
     },
 
-    onConfirm: function (choice) {
-        if (choice === 'yes') {
-            //
+    onListSelect: function(view, selected) {
+        var me = this,
+            flag = selected.length === 0,
+            editButton = me.lookupReference('editButton'),
+            removeButton = me.lookupReference('removeButton');
+
+        editButton.setDisabled(flag);
+        removeButton.setDisabled(flag);
+    },
+
+    setActiveItem: function(panel) {
+        var me = this,
+            center = me.lookupReference('center');
+
+        center.getLayout().setActiveItem(panel);
+    },
+
+    onEditList: function() {
+        var me = this,
+            list = me.lookupReference('mylist'),
+            edit = me.lookupReference('myedit'),
+            selected = list.getSelection(),
+            vmodel = edit.getViewModel();
+
+        if( selected.length > 0 ) {
+            vmodel.setData({
+                rec: selected[0]
+            });
+            me.setActiveItem(edit);
         }
+    },
+
+    onRemoveList: function() {
+        console.log('remove list');
+    },
+
+    onSubmit: function() {
+        var me = this,
+            list = me.lookupReference('mylist');
+
+        me.setActiveItem(list);
+    },
+
+    onCancel: function() {
+        console.log('cancel');
     }
 });

@@ -37,13 +37,41 @@ Ext.define('MyList.view.main.Main', {
         width: 250,
         split: true
     },{
-        region: 'center',
-        xtype: 'container',
+        region:     'center',
+        xtype:      'container',
+        reference:  'center',
         layout: 'card',
         items:[{
-            xtype: 'mylist'
+            xtype:      'mylist',
+            reference:  'mylist',
+            tbar: [{
+                text:       '追加',
+                handler:    'onAddList'
+            },{
+                text:       '削除',
+                disabled:   true,
+                reference:  'removeButton',
+                handler:    'onRemoveList'
+            },{
+                text:       '編集',
+                disabled:   true,
+                reference:  'editButton',
+                handler:    'onEditList'
+            }],
+            listeners: {
+                itemdblclick:   'onEditList',
+                selectionchange:'onListSelect'
+            }
         },{
-            xtype: 'myedit'
+            xtype:      'myedit',
+            reference:  'myedit',
+            fbar: [{
+                text: '登録',
+                handler: 'onSubmit'
+            },{
+                text: 'キャンセル',
+                handler: 'onCancel'
+            }]
         }]
     }]
 });
