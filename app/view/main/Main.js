@@ -36,7 +36,10 @@ Ext.define('MyList.view.main.Main', {
         xtype: 'grouplist',
         html: 'west',
         width: 250,
-        split: true
+        split: true,
+        listeners: {
+            selectionchange: 'onGroupSelect'
+        }
     },{
         region:     'center',
         xtype:      'container',

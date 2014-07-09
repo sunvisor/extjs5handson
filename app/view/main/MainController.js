@@ -82,5 +82,19 @@ Ext.define('MyList.view.main.MainController', {
         }
         me.setActiveItem(list);
 
+    },
+
+    onGroupSelect: function(view, selected) {
+        var me = this,
+            list = me.lookupReference('mylist'),
+            store = list.getStore(),
+            groupId;
+
+        groupId = selected.length > 0 ? selected[0].get('id') : null;
+        store.clearFilter();
+        if( groupId ) {
+            store.filter('group', groupId);
+        }
     }
+
 });
