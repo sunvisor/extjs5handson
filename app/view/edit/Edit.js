@@ -42,6 +42,16 @@ Ext.define('MyList.view.edit.Edit',{
             value: '{namekana}',
             fieldLabel: '{label.namekana}'
         }
+    },{
+        xtype: 'combobox',
+        name: 'group',
+        bind: {
+            value: '{rec.group}',
+            fieldLabel: '{label.group}',
+            store: '{groups}'
+        },
+        valueField: 'id',
+        displayField: 'groupName'
     }]
 
 });
