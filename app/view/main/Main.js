@@ -11,7 +11,8 @@ Ext.define('MyList.view.main.Main', {
     xtype: 'app-main',
 
     requires: [
-        'MyList.view.edit.Edit'
+        'MyList.view.edit.Edit',
+        'MyList.view.list.List'
     ],
 
     controller: 'main',
@@ -40,10 +41,9 @@ Ext.define('MyList.view.main.Main', {
         xtype: 'container',
         layout: 'card',
         items:[{
-            xtype: 'myedit'
+            xtype: 'mylist'
         },{
-            xtype: 'panel',
-            html: 'edit panel'
+            xtype: 'myedit'
         }]
     }]
 });
