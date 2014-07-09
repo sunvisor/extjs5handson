@@ -9,35 +9,41 @@ Ext.define('MyList.view.main.Main', {
     extend: 'Ext.container.Container',
 
     xtype: 'app-main',
-    
+
+    requires: [
+        'MyList.view.edit.Edit'
+    ],
+
     controller: 'main',
-    viewModel: {
-        type: 'main'
-    },
+
+    viewModel: 'main',
 
     layout: {
         type: 'border'
     },
 
     items: [{
-        xtype: 'panel',
+        region: 'north',
+        xtype: 'component',
+        padding: 8,
         bind: {
-            title: '{name}'
-        },
+            html: '{title}'
+        }
+    },{
         region: 'west',
-        html: '<ul><li>This area is commonly used for navigation, for example, using a "tree" component.</li></ul>',
+        xtype: 'panel',
+        html: 'west',
         width: 250,
-        split: true,
-        tbar: [{
-            text: 'Button',
-            handler: 'onClickButton'
-        }]
+        split: true
     },{
         region: 'center',
-        xtype: 'tabpanel',
+        xtype: 'container',
+        layout: 'card',
         items:[{
-            title: 'Tab 1',
-            html: '<h2>Content appropriate for the current navigation.</h2>'
+            xtype: 'myedit'
+        },{
+            xtype: 'panel',
+            html: 'edit panel'
         }]
     }]
 });

@@ -7,8 +7,14 @@ Ext.define('MyList.view.main.MainModel', {
     alias: 'viewmodel.main',
 
     data: {
-        name: 'MyList'
+        title: '名簿リスト',
+        label: {
+            id: 'ID',
+            name: '氏名',
+            kana: 'フリガナ',
+            namekana: '氏名(カナ)',
+            group: 'グループ'
+        }
     }
 
-    //TODO - add data, formulas and/or methods to support your view
 });
