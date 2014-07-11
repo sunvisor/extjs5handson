@@ -1,8 +1,18 @@
 ## Step.6 グループ
 
+実はこの名簿はグループ分けされています。
+
+* 編集画面でグループを設定できるようにします。
+* 画面左側にグループ一覧を表示し、グループ毎に表示できるようにします。
+
+{@img memo.png}
+
 ### store の定義
 
-`data` プロパティでの設定
+* まずグループの Store を定義します。
+* 今回は `data` プロパティで設定します。
+* このようにクライアントサイドで固定でデータを持つこともできます。
+* この Store は、Edit ビューと、後で作る Group ビュー 両方で使いますので、Main ビューで定義します。
 
 **app/view/main/MainModel.js**
 
@@ -30,6 +40,8 @@
 
 ### コンボボックスの利用
 
+* コンボボックスでグループを入力できるようにします。
+
 **app/view/edit/Edit.js**
 
     },{
@@ -43,12 +55,15 @@
         valueField: 'id',
         displayField: 'groupName'
 
+* `xtype: 'combobox'`
 * `bind`
 * `store`
 * `valueField`
 * `displayField`
 
 ### GroupList ビューを追加
+
+* 画面左側のグループ一覧のビューを作ります。
 
 **app/view/grouplist/GroupList.js**
 
@@ -71,7 +86,14 @@
 
     });
 
+* ここでも Grid を使っています。
+* カラムのヘッダは不要ですので、`hideHeaders` コンフィグで消しています。
+* 本当は、DataView コンポーネントを使ってやったほうが軽くなります。
+* `flex`
+
 ### Main ビューに配置
+
+* いま作ったビューを Main ビューに配置します。
 
 **app/view/main/Main.js**
 
@@ -90,11 +112,15 @@
         width: 250,
         split: true
 
-* 表示を確認
+* 表示を確認します。
 
 ### フィルタリングする
 
+* 画面左のグループを選択すると、中央のグリッドをそのグループのみにフィルタリングします。
+
 **app/view/main/Main.js**
+
+`listeners` コンフィグを追加します。
 
         listeners: {
             selectionchange: 'onGroupSelect'
@@ -103,6 +129,8 @@
 * west リージョンのパネルに追加
 
 **app/view/main/MainController.js**
+
+リスナーを実装します。
 
     onGroupSelect: function(view, selected) {
         var me = this,
@@ -117,6 +145,7 @@
         }
     }
 
+* 選択されたグループ ID でフィルタをかけています。
 * `store.filter`
 * `store.clearFilter`
 * `remoteFilter`
