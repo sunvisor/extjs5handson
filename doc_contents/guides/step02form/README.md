@@ -1,6 +1,10 @@
-## Step.2 Form でのデータバインディング
+# Step.2 Form でのデータバインディング
 
-### Edit ビューの作成
+ここでは画面上にフォームを配置し、フォームフィールドと裏側にあるデータがバインドされる様子を確認します。
+
+## Edit ビューの作成
+
+フォームを使った Edit ビューを作成します。
 
 **app/view/edit/Edit.js**
 
@@ -52,12 +56,15 @@
 
     });
 
+* `requires`
 * `defaults`
 * `items`
 * `xtype`
 * `bind`
+* `textfield`
+* `displayfield`
 
-### Edit ビューの ViewModel を作成
+## Edit ビューの ViewModel を作成
 
 **app/view/edit/EditModel.js**
 
@@ -84,10 +91,11 @@
         }
     });
 
+* `alias: 'viewmodel.foo'`
 * `data`
 * `formulas` と `get`
 
-### Main ビューに Edit を追加
+## Main ビューに Edit を追加
 
     requires: [
         'MyList.view.edit.Edit'
@@ -104,6 +112,6 @@
 
 * `requires`
 * 本来は2枚目に置くのだけど、フォームの表示確認のため1枚目に
-* refresh してから表示
-
-
+* watch していない場合は refresh
+* ブラウザで表示
+* フォームを修正すると、同時に `namekana` の `displayfield` が更新されることを確認。

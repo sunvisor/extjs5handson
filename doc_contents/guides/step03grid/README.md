@@ -1,6 +1,14 @@
-## Step.3 Grid に一覧表示
+# Step.3 Grid に一覧表示
 
-### Model を作成
+Ext JS の花形コンポーネントである Grid を使って、名簿の一覧を表示します。
+ビューの名前は List とします。
+データは、Step.1 でセットアップした Ext Direct で取ってきます。
+
+> Ext Direct は Ajax の仕組みを元に動いていますので、
+> 通常ですと、他のサーバーからデータを取得することはできません。
+> 今回のサーバーは XHR2 の機能を使ってクロスドメインでのアクセスを許可しています。
+
+## Model を作成
 
 **app/model/List.js**
 
@@ -13,9 +21,13 @@
 
     });
 
-* `fields` には全てのフィールドを設定する必要はない
+* `fields` には全てのフィールドを設定する必要はありません
+* サーバーから来るデータを全てセットされます
+* 項目が増えたら、サーバー側を直せばすみます
+* クライアント側で何か特別なことをする場合のみ `fields` に定義します
+    * この場合は `group` フィールドの型を `number` にしています
 
-### List ビューの ViewModel の作成
+## List ビューの ViewModel の作成
 
     Ext.define('MyList.view.list.ListModel', {
         extend: 'Ext.app.ViewModel',
@@ -46,7 +58,7 @@
 * `remoteSort`
 * `remoteFilter`
 
-### List ビューを作成
+## List ビューを作成
 
 **app/view/list/List.js**
 
@@ -87,9 +99,13 @@
         }]
     });
 
+* `Ext.grid.Panel`
+* `columns`
+* `bbar`
+* `pagingtoolbar`
 * ViewModel の `stores` に定義した `liststore` とバインド
 
-### Main ビューに配置
+## Main ビューに配置
 
 **app/view/main/Main.js**
 
@@ -106,8 +122,6 @@
             xtype: 'myedit'
         }]
 
-* List ビューを1枚目に
-* refresh してリロード
+* List ビューを1枚目にセット、さきほどの Edit ビューは 2枚目に
 * ソートやページングの動作を確認
-
-
+* `remoteSort` について再確認

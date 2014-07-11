@@ -1,8 +1,21 @@
-## Step.4 イベントの処理
+# Step.4 イベントの処理
 
-List ビューにツールバーを配置し、イベントの処理をします
+List ビューにツールバーを配置し、イベントの処理をします。
+次の様なことができるようにしましょう。
 
-### ボタンやリスナー定義の追加
+* 名簿の追加
+* 名簿からの削除
+* 名簿の編集
+
+名簿の入力には Step.2 で作った Edit ビューを使います。
+
+* ViewController
+
+## ボタンやリスナー定義の追加
+
+ボタンを List ビューに追加します。
+今回は、イベント処理を MainController で行いますので、
+ボタンの追加も、Main ビュー側に記述します。
 
 **app/view/main/Main.js**
 
@@ -33,7 +46,7 @@ List ビューにツールバーを配置し、イベントの処理をします
 * `reference`
 * `listeners`
 
-### Main ビューの ViewController を編集
+## Main ビューの ViewController を編集
 
 **app/view/main/MainController.js**
 
@@ -48,9 +61,12 @@ List ビューにツールバーを配置し、イベントの処理をします
 
     });
 
-* 追加ボタンでコンソールに表示されるのを確認
+* `onAddList:` がイベントリスナー
+* 追加ボタンでコンソールに 'add list' と表示されるのを確認
 
-### ボタンの活性化制御
+## ボタンの活性化制御
+
+* List が選択状態になったら、「編集」「削除」ボタンを有効化する
 
 **app/view/main/MainController.js**
 
@@ -67,7 +83,7 @@ List ビューにツールバーを配置し、イベントの処理をします
 * `selectionchange` イベント
 * `lookupReference`
 
-### のこりのリスナーを追加
+## のこりのリスナーを追加
 
 **app/view/main/MainController.js**
 
@@ -79,9 +95,15 @@ List ビューにツールバーを配置し、イベントの処理をします
         console.log('remove list');
     }
 
-### 編集ボタンで Edit ビューに切り替え
+* 今のところは `console.log` のみ記述。
+* リスナーが呼び出されていることを確認
 
-`reference` を追加
+## 編集ボタンで Edit ビューに切り替え
+
+編集ボタンを押したときに、表示を Edit ビューに切り替えるのを実装します。
+その時にはもちろん一覧のデータをフォームにセットします。
+
+Main ビューに `reference` を追加します。
 
 **app/view/main/Main.js**
 
@@ -98,6 +120,7 @@ List ビューにツールバーを配置し、イベントの処理をします
             xtype:      'myedit',
             reference:  'myedit'
 
+次の3つの `reference` を追加しました。
 
 * `center`
 * `mylist`
@@ -127,10 +150,15 @@ List ビューにツールバーを配置し、イベントの処理をします
         }
     },
 
-* `setActiveItem`
+* `setActiveItem` メソッド
+    * center パネルのアクティブな子アイテムを切り替えます
 * `getViewModel`
+    * ビューに関連するビューモデルを取得できます
 
-### List ビューに戻る
+## List ビューに戻る
+
+これで「編集」ボタンで Edit ビューが表示されますが、
+このままでは List ビューに戻れないので、戻る処理を実装します。
 
 **app/view/main/Main.js**
 
@@ -146,7 +174,11 @@ Edit ビューにツールバー追加
                 handler: 'onCancel'
             }]
 
+* `fbar`
+
 **app/view/main/MainController.js**
+
+イベントリスナーを追加。まずは `console.log` で。
 
     onSubmit: function() {
         console.log('submit');
@@ -156,9 +188,9 @@ Edit ビューにツールバー追加
         console.log('cancel');
     }
 
-イベント確認
+* イベント確認
 
-### 戻る処理だけ
+## 戻る処理を実装
 
 **app/view/main/MainController.js**
 
@@ -169,8 +201,6 @@ Edit ビューにツールバー追加
         me.setActiveItem(list);
     },
 
-* 戻ることを確認
-* データが変更されたらグリッドが更新されることを確認
-* ダーティマークが消えないのを確認
-
-
+* 戻ることを確認します。
+* データが変更されたらグリッドが更新されることを確認します。
+* ダーティマークが消えないのを確認します。
