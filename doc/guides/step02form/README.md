@@ -86,7 +86,7 @@
 
         formulas: {
             namekana: function(get) {
-                var name = get('rec.name');
+                var name = get('rec.name'),
                     kana = get('rec.kana');
                 return name + ' (' + kana + ')';
             }
