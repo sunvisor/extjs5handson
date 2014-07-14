@@ -1,6 +1,14 @@
-extjs5handson
-=============
+Ext Js 5 handson
+================
 
-Ext JS 5 hands-on 
+2014/07/12 に開催したイベントで実施した、Ext JS 5 hands-on の資料です。
 
-[ハンズオン資料](http://sunvisor.github.io/extjs5handson/doc/#!/guide)
+[ハンズオン資料はこちらです。](http://sunvisor.github.io/extjs5handson/doc/#!/guide)
+
+口頭で説明している部分を省いているところがあるため、少々言葉足らずです。
+
+こちらのリポジトリの step01〜step06のタグが振ってあるところが、資料でのそれぞれのステップを最後までやったときのソースコードになっています。
+
+どうぞ、これを活用して Ext JS 5 を触って見て下さい。
+
+資料／コードのおかしな点を見つけられた方や、質問がある方は、issue に挙げて頂けるととても喜びます。
