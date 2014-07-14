@@ -120,13 +120,11 @@
 
 **app/view/main/Main.js**
 
-`listeners` コンフィグを追加します。
+`listeners` コンフィグを先ほどの`west` リージョンのコンフィグの中 (`split: true` の次) に追加します。
 
         listeners: {
             selectionchange: 'onGroupSelect'
         }
-
-* west リージョンのパネルに追加
 
 **app/view/main/MainController.js**
 
